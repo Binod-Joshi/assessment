@@ -35,6 +35,7 @@ Create a file called .env in the backend folder. Inside it write this :
 
 ```bash
 MONGO_URL = mongodb://127.0.0.1/users
+JWT_SECRET = yoursecret
 ```
 
 Terminal 2: Setting Up Frontend
