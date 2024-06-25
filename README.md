@@ -36,7 +36,6 @@ Create a file called .env in the backend folder. Inside it write this :
 ```bash
 MONGO_URL = mongodb://127.0.0.1/users
 ```
-Instead of this link write your database link and rayzorpay key and secret.
 
 Terminal 2: Setting Up Frontend
 
