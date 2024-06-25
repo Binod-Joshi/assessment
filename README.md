@@ -26,7 +26,7 @@ Open 2 terminals in separate windows/tabs.
 Terminal 1: Setting Up Backend
 
 ```bash
-cd ecombackend
+cd assessment1back
 npm install
 nodemon
 ```
@@ -40,7 +40,7 @@ MONGO_URL = mongodb://127.0.0.1/users
 Terminal 2: Setting Up Frontend
 
 ```bash
-cd ecomfrontend
+cd assessment1front
 npm install
 npm start
 ```
