@@ -18,7 +18,7 @@ This is simple user handle sites.
 ## Installation
 
 ```bash
-https://github.com/Binod-Joshi/collegeERP.git
+https://github.com/Binod-Joshi/assessment.git
 ```
 
 Open 2 terminals in separate windows/tabs.
