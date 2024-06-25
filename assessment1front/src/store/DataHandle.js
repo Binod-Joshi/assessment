@@ -53,6 +53,30 @@ export const RegisterUser = (fields) => async(dispatch) => {
   }
 }
 
+export const updateUser = (fields,currentUser) => async(dispatch) => {
+  const {name, email,contact,userId} = fields;
+  console.log(name,email);
+  dispatch(authRequest());
+  try {
+    let result = await fetch(`http://localhost:5000/auth/users/${userId}`,{
+      method: "put",
+      body:JSON.stringify({email,name,contact}),
+      headers:{
+        "Content-Type":"application/json",
+        Authorization:`Bearer ${currentUser?.token}`,
+      }
+    });
+    result = await result.json();
+    if(result?.data?.email){
+    //   dispatch(authSuccess(result));
+    }else{
+      dispatch(authFailed(result.message));
+    }
+  } catch (error) {
+    dispatch(authError(error.message));
+  }
+}
+
 export const getAllUser = () => async(dispatch) => {
     
     dispatch(authRequest());
@@ -75,28 +99,6 @@ export const getAllUser = () => async(dispatch) => {
     }
 }
 
-export const updateUser = (fields) => async(dispatch) => {
-  const {name, email,contact,userId} = fields;
-  console.log(name,email);
-  dispatch(authRequest());
-  try {
-    let result = await fetch(`http://localhost:5000/auth/users/${userId}`,{
-      method: "put",
-      body:JSON.stringify({email,name,contact}),
-      headers:{
-        "Content-Type":"application/json"
-      }
-    });
-    result = await result.json();
-    if(result?.data?.email){
-    //   dispatch(authSuccess(result));
-    }else{
-      dispatch(authFailed(result.message));
-    }
-  } catch (error) {
-    dispatch(authError(error.message));
-  }
-}
 
 export const deleteUser = (fields) => async(dispatch) => {
     const {userId} = fields;

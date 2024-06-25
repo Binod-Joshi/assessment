@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const generateToken = require("./generateToken1");
+const { jwtProtect } = require("../middleware/authMiddleware");
+
 
 
 router.post('/register', async(req,res) => {
@@ -29,10 +32,12 @@ router.post('/register', async(req,res) => {
                 name:user?.name,
                 email:user?.email,
                 contact:user?.contact,
+                token: generateToken(user?._id)
             })
         }
     } catch (error) {
         res.status(500).send(error.message);
+        console.log(error.message);
     }
 });
 
@@ -49,6 +54,7 @@ router.post("/login", async(req,res) => {
                         name:user.name,
                         email:user.email,
                         contact:user.contact,
+                        token: generateToken(user?._id)
                     })
                 }else{
                     res.send({message:"Invalid password."})
@@ -76,7 +82,7 @@ router.get('/users', async (req, res) => {
     }
   });
 
-router.put('/users/:userId', async (req, res) => {
+router.put('/users/:userId',jwtProtect, async (req, res) => {
     try {
       const userId = req.params.userId;
       const { name, email, contact } = req.body;

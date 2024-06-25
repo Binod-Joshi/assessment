@@ -45,7 +45,7 @@ const DashboardTable = () => {
       userId: selelctedId,
     };
     // Implement logic to handle form submission (e.g., send data to backend)
-    dispatch(updateUser(fields));
+    dispatch(updateUser(fields,currentUser));
     setUpdate(false);
     setSelectedId("");
   };
